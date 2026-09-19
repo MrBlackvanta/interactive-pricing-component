@@ -12,7 +12,7 @@ const shareImage = {
   url: "/opengraph-image.jpg",
   width: 1200,
   height: 630,
-  alt: "Pagemeter — simple, traffic-based pricing.",
+  alt: "The Pagemeter pricing card at 100K pageviews, beside the Pagemeter name.",
 };
 
 const manrope = Manrope({
