@@ -3,11 +3,54 @@
 
 @theme {
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --color-page: #f9faff;
+  --color-band: #f1f5fe;
+  --color-rule: #ecf0fb;
+  --color-control: #cfd8ef;
+
+  --color-ink: #293356;
+  --color-ink-soft: #626e93;
+  --color-ink-on-dark: #becdff;
+
+  --color-accent: #10d8c4;
+  --color-accent-hover: #7aeadf;
+  --color-accent-active: #24aea1;
+  --color-accent-fill: #a4f3eb;
+  --color-accent-mark: #80fff3;
+
+  --color-discount: #feede8;
+  --color-discount-ink: #cc3300;
+
+  --text-display: 1.25rem;
+  --text-display-lg: 1.75rem;
+  --text-lead: 0.8125rem;
+  --text-lead-lg: 0.9375rem;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--letter-spacing: 0.143em;
+  --text-eyebrow-lg: 0.875rem;
+  --text-eyebrow-lg--letter-spacing: 0.143em;
+  --text-price: 2rem;
+  --text-price--letter-spacing: -0.025em;
+  --text-price-lg: 2.5rem;
+  --text-price-lg--letter-spacing: -0.025em;
+  --text-unit: 0.875rem;
+  --text-unit-lg: 1rem;
+  --text-ui: 0.75rem;
+  --text-badge: 0.625rem;
+
+  --leading-lead: 1.77;
+
+  --radius-band: 191.5px;
+
+  --shadow-card: 0 18px 24px rgb(41 51 86 / 0.07);
+  --shadow-knob: 0 15px 20px #80fff3;
 }
 
 @layer base {
   html {
-    @apply overflow-y-scroll font-sans;
+    @apply bg-page text-ink-soft overflow-y-scroll font-sans;
+    line-height: 1.36;
     color-scheme: light;
   }
 
@@ -17,5 +60,5 @@
 }
 
 @utility v-focus-ring {
-  @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current;
+  @apply focus-visible:outline-ink focus-visible:outline-2 focus-visible:outline-offset-4;
 }
