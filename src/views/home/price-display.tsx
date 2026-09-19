@@ -1,6 +1,13 @@
 import type { CSSProperties } from "react";
 
-export default function PriceDisplay({ price }: { price: number }) {
+const COUNT_MS = 300;
+
+type PriceDisplayProps = {
+  price: number;
+  counts: boolean;
+};
+
+export default function PriceDisplay({ price, counts }: PriceDisplayProps) {
   return (
     <output
       htmlFor="pageviews billing"
@@ -14,7 +21,12 @@ export default function PriceDisplay({ price }: { price: number }) {
         $
         <span
           className="v-price"
-          style={{ "--price": price } as CSSProperties}
+          style={
+            {
+              "--price": price,
+              "--count": `${counts ? COUNT_MS : 0}ms`,
+            } as CSSProperties
+          }
         />
         .00
       </span>

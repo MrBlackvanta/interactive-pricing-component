@@ -9,9 +9,20 @@ import PriceDisplay from "./price-display";
 export default function PricingControls() {
   const [tierIndex, setTierIndex] = useState(DEFAULT_TIER_INDEX);
   const [yearly, setYearly] = useState(false);
+  const [priceCounts, setPriceCounts] = useState(false);
 
   const tier = tiers[tierIndex];
   const label = `${tier.pageviews} pageviews`;
+
+  const selectTier = (index: number) => {
+    setPriceCounts(false);
+    setTierIndex(index);
+  };
+
+  const selectBilling = (nextYearly: boolean) => {
+    setPriceCounts(true);
+    setYearly(nextYearly);
+  };
 
   return (
     <div className="grid gap-y-6 px-6 pt-8.5 pb-9.5 lg:grid-cols-2 lg:px-12 lg:py-10">
@@ -22,12 +33,13 @@ export default function PricingControls() {
         value={tierIndex}
         max={tiers.length - 1}
         valueText={label}
-        onChange={setTierIndex}
+        onChange={selectTier}
       />
       <PriceDisplay
         price={yearly ? tier.monthly * YEARLY_RATE : tier.monthly}
+        counts={priceCounts}
       />
-      <BillingToggle yearly={yearly} onChange={setYearly} />
+      <BillingToggle yearly={yearly} onChange={selectBilling} />
     </div>
   );
 }

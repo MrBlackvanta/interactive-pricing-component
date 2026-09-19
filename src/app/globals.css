@@ -86,7 +86,7 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: --price 300ms ease-out;
+    transition: --price var(--count) ease-out;
   }
 }
 
