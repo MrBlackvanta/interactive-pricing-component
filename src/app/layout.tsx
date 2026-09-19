@@ -12,7 +12,7 @@ const shareImage = {
   url: "/opengraph-image.jpg",
   width: 1200,
   height: 630,
-  alt: "The Pagemeter pricing panel with its pageviews slider and monthly total.",
+  alt: "Pagemeter — simple, traffic-based pricing.",
 };
 
 const manrope = Manrope({
@@ -56,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} antialiased`}>
-      <body>{children}</body>
+      <body className="relative min-h-dvh">{children}</body>
     </html>
   );
 }

@@ -1,7 +1,10 @@
 @import "tailwindcss";
 @source not "../../*.md";
+@source not "../../public";
 
 @theme {
+  --breakpoint-xs: 23rem;
+
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 
   --color-page: #f9faff;
@@ -17,7 +20,6 @@
   --color-accent-hover: #7aeadf;
   --color-accent-active: #24aea1;
   --color-accent-fill: #a4f3eb;
-  --color-accent-mark: #80fff3;
 
   --color-discount: #feede8;
   --color-discount-ink: #cc3300;
@@ -39,6 +41,7 @@
   --text-ui: 0.75rem;
   --text-badge: 0.625rem;
 
+  --leading-base: 1.36;
   --leading-lead: 1.77;
 
   --radius-band: 191.5px;
@@ -49,8 +52,7 @@
 
 @layer base {
   html {
-    @apply bg-page text-ink-soft overflow-y-scroll font-sans;
-    line-height: 1.36;
+    @apply bg-page text-ink-soft leading-base font-sans;
     color-scheme: light;
   }
 
@@ -59,6 +61,109 @@
   }
 }
 
+@property --price {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
 @utility v-focus-ring {
   @apply focus-visible:outline-ink focus-visible:outline-2 focus-visible:outline-offset-4;
+}
+
+@utility v-band {
+  &::before {
+    content: "";
+    @apply bg-band rounded-bl-band absolute inset-x-0 top-0 -z-10 h-100 lg:h-112.25;
+  }
+}
+
+@utility v-price {
+  counter-reset: price var(--price);
+
+  &::before {
+    content: counter(price);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: --price 300ms ease-out;
+  }
+}
+
+@utility v-slider {
+  appearance: none;
+  background: transparent;
+
+  &::-webkit-slider-runnable-track {
+    @apply h-2 rounded-full;
+    background: linear-gradient(
+      to right,
+      var(--color-accent-fill) var(--progress),
+      var(--color-rule) var(--progress)
+    );
+  }
+
+  &::-moz-range-track {
+    @apply h-2 rounded-full;
+    background: linear-gradient(
+      to right,
+      var(--color-accent-fill) var(--progress),
+      var(--color-rule) var(--progress)
+    );
+  }
+
+  &::-webkit-slider-thumb {
+    @apply bg-accent -mt-4 size-10 rounded-full;
+    appearance: none;
+    background-image: url("/icon-slider.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow-knob);
+  }
+
+  &::-moz-range-thumb {
+    @apply bg-accent size-10 rounded-full border-0;
+    background-image: url("/icon-slider.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow-knob);
+  }
+
+  &:hover::-webkit-slider-thumb {
+    @apply bg-accent-hover;
+  }
+
+  &:hover::-moz-range-thumb {
+    @apply bg-accent-hover;
+  }
+
+  &:active::-webkit-slider-thumb {
+    @apply bg-accent-active;
+  }
+
+  &:active::-moz-range-thumb {
+    @apply bg-accent-active;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::-webkit-slider-thumb {
+    @apply outline-ink outline-2 outline-offset-4;
+  }
+
+  &:focus-visible::-moz-range-thumb {
+    @apply outline-ink outline-2 outline-offset-4;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::-webkit-slider-thumb {
+      transition: background-color 150ms ease-out;
+    }
+
+    &::-moz-range-thumb {
+      transition: background-color 150ms ease-out;
+    }
+  }
 }
