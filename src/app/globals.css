@@ -43,8 +43,8 @@
 
   --radius-band: 191.5px;
 
-  --shadow-card: 0 18px 24px rgb(41 51 86 / 0.07);
-  --shadow-knob: 0 15px 20px #80fff3;
+  --shadow-card: 0 20px 30px -5px rgb(127 137 185 / 0.15);
+  --shadow-knob: 0 15px 30px rgb(0 255 231 / 0.6);
 }
 
 @layer base {
